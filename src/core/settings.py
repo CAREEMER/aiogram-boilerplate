@@ -9,9 +9,9 @@ class Settings(BaseSettings):
     DISCORD_CDN_CHAT_ID: int = None
 
     DATABASE_HOST: str = "localhost"
-    DATABASE_USER: str = "trashmover"
-    DATABASE_PASSWORD: str = "trashmover"
-    DATABASE_NAME: str = "trashmover"
+    DATABASE_USER: str = "sample_tg_bot_app"
+    DATABASE_PASSWORD: str = "sample_tg_bot_app"
+    DATABASE_NAME: str = "sample_tg_bot_app"
     DATABASE_PORT: int = 5432
 
     ADMIN_KEY: str = "admin"
