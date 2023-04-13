@@ -4,7 +4,7 @@
 `poetry export -f requirements.txt --output src/requirements.txt`
 
 ### Generate migrations
-`alembic revision --autogenerate -m "init"`
+`alembic revision --autogenerate -m "init"`  
 `alembic upgrade head`
 
 ### Deploy commands
