@@ -1,0 +1,31 @@
+from pydantic import BaseSettings
+
+
+class Settings(BaseSettings):
+    ENVIRONMENT: str = "local"
+
+    BOT_TOKEN: str = None
+    DISCORD_BOT_TOKEN: str = None
+    DISCORD_CDN_CHAT_ID: int = None
+
+    DATABASE_HOST: str = "localhost"
+    DATABASE_USER: str = "trashmover"
+    DATABASE_PASSWORD: str = "trashmover"
+    DATABASE_NAME: str = "trashmover"
+    DATABASE_PORT: int = 5432
+
+    ADMIN_KEY: str = "admin"
+
+    @property
+    def DATABASE_URL(self) -> str:
+        return (
+            f"postgresql+psycopg2://{self.DATABASE_USER}:{self.DATABASE_PASSWORD}@{self.DATABASE_HOST}"
+            f":{self.DATABASE_PORT}/{self.DATABASE_NAME}"
+        )
+
+    @property
+    def LOCAL(self) -> bool:
+        return self.ENVIRONMENT == "local"
+
+
+settings = Settings()
