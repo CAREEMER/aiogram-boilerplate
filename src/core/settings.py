@@ -12,8 +12,6 @@ class Settings(BaseSettings):
     DATABASE_NAME: str = "sample_tg_bot_app"
     DATABASE_PORT: int = 5432
 
-    ADMIN_KEY: str = "admin"
-
     @property
     def DATABASE_URL(self) -> str:
         return (
