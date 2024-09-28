@@ -1,2 +1,1 @@
-from .debug import *
-from .start import *
+from .start import *  # NOQA

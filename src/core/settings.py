@@ -1,12 +1,10 @@
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
     ENVIRONMENT: str = "local"
 
-    BOT_TOKEN: str = None
-    DISCORD_BOT_TOKEN: str = None
-    DISCORD_CDN_CHAT_ID: int = None
+    BOT_TOKEN: str | None = "5917499763:AAEwikkm7sFlSIRy5I4poBuaiByK_R2GXOg"
 
     DATABASE_HOST: str = "localhost"
     DATABASE_USER: str = "sample_tg_bot_app"
@@ -19,7 +17,7 @@ class Settings(BaseSettings):
     @property
     def DATABASE_URL(self) -> str:
         return (
-            f"postgresql+psycopg2://{self.DATABASE_USER}:{self.DATABASE_PASSWORD}@{self.DATABASE_HOST}"
+            f"postgresql+asyncpg://{self.DATABASE_USER}:{self.DATABASE_PASSWORD}@{self.DATABASE_HOST}"
             f":{self.DATABASE_PORT}/{self.DATABASE_NAME}"
         )
 

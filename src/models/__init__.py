@@ -1,1 +1,3 @@
-from .user import User
+from models.user import TelegramUser
+
+__all__ = ["TelegramUser"]

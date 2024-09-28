@@ -1,14 +1,16 @@
-from aiogram import executor
+import asyncio
+import logging
+import sys
 
 import commands  # NOQA
-from core import dp, settings
-from middleware.register_user import RegisterUserMiddleware
+import middleware  # NOQA
+from core.bot import bot, dp
 
 
-def main():
-    dp.middleware.setup(RegisterUserMiddleware())
-    executor.start_polling(dp, skip_updates=settings.LOCAL)
+async def main():
+    await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
-    main()
+    logging.basicConfig(level=logging.INFO, stream=sys.stdout)
+    asyncio.run(main())

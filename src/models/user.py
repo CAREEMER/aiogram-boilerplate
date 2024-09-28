@@ -1,11 +1,14 @@
-from sqlmodel import Field
+from sqlalchemy import VARCHAR, Column
 
-from .base import BaseModel
+from core.db import DeclarativeBase
+from models.base import BaseModelMixin
 
 
-class User(BaseModel, table=True):
-    id: str = Field(index=True, primary_key=True, nullable=False)
-    username: str | None
-    mention: str | None
-    full_name: str | None
-    is_admin: bool = Field(default=False)
+class TelegramUser(BaseModelMixin, DeclarativeBase):
+    __tablename__ = "tg_users"
+
+    telegram_id: str = Column(VARCHAR(255), nullable=False, index=True, unique=True)
+    username: str | None = Column(VARCHAR(255))
+    mention: str | None = Column(VARCHAR(255))
+    full_name: str | None = Column(VARCHAR(255))
+    phone: str | None = Column(VARCHAR(255))

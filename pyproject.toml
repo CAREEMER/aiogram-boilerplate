@@ -1,34 +1,31 @@
 [tool.poetry]
-name = "sample_tg_bot_app"
+name = "aiogram-boilerplate"
 version = "0.1.0"
 description = ""
-authors = ["Rashid Mingazov <my@rdmingazov.ru>"]
+authors = ["rashid <my@rdmingazov.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
-aiogram = "^2.25.1"
-pydantic = "^1.10.6"
-sqlmodel = "^0.0.8"
-alembic = "^1.10.2"
-psycopg2-binary = "^2.9.5"
-httpx = "^0.23.3"
+python = "^3.12"
+pydantic = "^2.9.2"
+pydantic-settings = "^2.5.2"
+asyncpg = "^0.29.0"
+greenlet = "^3.1.1"
+alembic = "^1.13.3"
+sqlalchemy = "^2.0.35"
+aiogram = "^3.13.1"
+
 
 [tool.poetry.group.dev.dependencies]
-isort = "5.10.1"
-flake8 = "5.0.4"
-black = "22.6.0"
-flake8-pyproject = "^1.2.3"
+black = "^24.8.0"
+isort = "^5.13.2"
+flake8 = "^7.1.1"
 
 [tool.black]
 line-length = 120
 
 [tool.isort]
 profile = "black"
-
-[tool.flake8]
-ignore = ['F401', 'F403']
-max-line-length = 120
 
 [build-system]
 requires = ["poetry-core"]

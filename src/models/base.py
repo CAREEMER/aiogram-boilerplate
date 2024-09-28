@@ -1,49 +1,21 @@
-from sqlmodel import Session, SQLModel, select
+import uuid
 
-from db import engine
+from sqlalchemy import Column, DateTime, MetaData, func
+from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.orm import declarative_base
+
+metadata = MetaData()
+DeclarativeBase = declarative_base(metadata=metadata)
 
 
-class BaseModel(SQLModel, table=False):
-    def create(self):
-        with Session(engine) as session:
-            session.add(self)
-            session.commit()
-            session.refresh(self)
+class IDMixin:
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
-        return self
 
-    @classmethod
-    def get_all(cls):
-        with Session(engine) as session:
-            return session.exec(select(cls)).fetchall()
+class TimeStampMixin:
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
 
-    @classmethod
-    def filter(cls, *lookup_expression):
-        with Session(engine) as session:
-            session.execute(select(cls).where(*lookup_expression)).fetchall()
 
-    @classmethod
-    def get_obj(cls, *lookup_expression):
-        statement = select(cls).where(*lookup_expression)
-
-        with Session(engine) as session:
-            return session.exec(statement).one_or_none()
-
-    @classmethod
-    def create_obj(cls, **kwargs):
-        obj = cls(**kwargs)
-
-        with Session(engine) as session:
-            session.add(obj)
-            session.commit()
-            session.refresh(obj)
-
-        return obj
-
-    def update(self):
-        with Session(engine) as session:
-            session.add(self)
-            session.commit()
-            session.refresh(self)
-
-        return self
+class BaseModelMixin(IDMixin, TimeStampMixin):
+    pass
