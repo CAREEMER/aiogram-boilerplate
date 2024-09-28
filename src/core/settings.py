@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     ENVIRONMENT: str = "local"
 
-    BOT_TOKEN: str | None = "5917499763:AAEwikkm7sFlSIRy5I4poBuaiByK_R2GXOg"
+    BOT_TOKEN: str | None = None
 
     DATABASE_HOST: str = "localhost"
     DATABASE_USER: str = "sample_tg_bot_app"
